@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
+import DoctorCarousel from './Doctorscroll'; // Import the carousel
 
 const Dashboard = () => {
   const navigate = useNavigate();
 
   const handlePredictionChoice = (type) => {
-    navigate(`/predict/${type}`);
+    navigate(`/${type}`);
   };
 
   const userHistory = [
@@ -19,7 +20,6 @@ const Dashboard = () => {
 
       {/* Prediction Options */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-        {/* Stress Card */}
         <div
           onClick={() => handlePredictionChoice('stress')}
           className="bg-red-500 text-white p-8 rounded-lg shadow-lg hover:shadow-xl cursor-pointer transition-transform transform hover:scale-105"
@@ -27,8 +27,6 @@ const Dashboard = () => {
           <h2 className="text-3xl font-bold mb-4">Stress</h2>
           <p className="text-lg">Assess and manage your stress levels.</p>
         </div>
-
-        {/* Depression Card */}
         <div
           onClick={() => handlePredictionChoice('depression')}
           className="bg-blue-500 text-white p-8 rounded-lg shadow-lg hover:shadow-xl cursor-pointer transition-transform transform hover:scale-105"
@@ -36,8 +34,6 @@ const Dashboard = () => {
           <h2 className="text-3xl font-bold mb-4">Depression</h2>
           <p className="text-lg">Identify signs of depression and get help.</p>
         </div>
-
-        {/* Anxiety Card */}
         <div
           onClick={() => handlePredictionChoice('anxiety')}
           className="bg-green-500 text-white p-8 rounded-lg shadow-lg hover:shadow-xl cursor-pointer transition-transform transform hover:scale-105"
@@ -46,6 +42,9 @@ const Dashboard = () => {
           <p className="text-lg">Understand and alleviate anxiety symptoms.</p>
         </div>
       </div>
+
+      {/* Doctor Carousel */}
+      <DoctorCarousel />
 
       {/* User History */}
       <div>

@@ -1,9 +1,17 @@
+import Dashboard from "./components/user/dashboard"
+import NavigationBar from "./components/user/Navigation";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
 function App() {
 
   return (
-    <div>sk</div>
+    <Router>
+      <NavigationBar />
+    <Routes>
+      <Route path="/" element={<Dashboard />} />
+    </Routes>
+  </Router>
      
   )
 }

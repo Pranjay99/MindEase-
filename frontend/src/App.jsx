@@ -1,4 +1,6 @@
 import Dashboard from "./components/user/dashboard"
+import Login from "./components/user/Login";
+import Signup from "./components/user/Signup";
 import NavigationBar from "./components/user/Navigation";
 import DoctorList from "./components/user/Doctorlist";
 import DoctorDetails from "./components/user/DoctorDetails";
@@ -22,6 +24,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Dashboard />} />
       <Route path="/doctor" element={<DoctorDashboard />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Signup />} />
       <Route path="/depression" element={<Depression onPrediction={handlePredictionResult}/>} />
       <Route
           path="/prediction" element={

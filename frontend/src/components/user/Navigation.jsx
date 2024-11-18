@@ -40,9 +40,11 @@ const NavigationBar = () => {
             >
               Profile
             </Link>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white px-3 py-2 rounded-md text-sm font-medium">
+            <Link
+              to="/login"
+              className="bg-blue-500 hover:bg-blue-700 text-white px-3 py-2 rounded-md text-sm font-medium">
               Login
-            </button>
+            </Link>
           </div>
         </div>
       </div>

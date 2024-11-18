@@ -1,5 +1,9 @@
+import { useNavigate } from 'react-router-dom';
+
 
 const DoctorCarousel = () => {
+  const navigate = useNavigate();
+
   const doctors = [
     {
       id: 1,
@@ -28,6 +32,7 @@ const DoctorCarousel = () => {
         {doctors.map((doctor) => (
           <div
             key={doctor.id}
+            onClick={() => navigate(`/doctor/${doctor.id}`)}
             className="bg-white shadow-lg rounded-lg p-4 w-64 flex-shrink-0"
           >
             <img

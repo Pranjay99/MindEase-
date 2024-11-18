@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
+  const navigate = useNavigate();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,6 +31,7 @@ const Login = () => {
         // Save token to localStorage
         localStorage.setItem('token', data.token);
         // Optionally redirect the user to another page (e.g., dashboard)
+        navigate(`/`);
       } else {
         setMessage(data.error || 'Login failed. Please check your credentials.');
       }

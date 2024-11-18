@@ -1,6 +1,17 @@
-import  { useState } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const DoctorDashboard = () => {
+  const navigate = useNavigate();
+
+  // Sample doctor data
+  const doctor = {
+    name: 'Dr. Jane Smith',
+    photo: 'https://cdn-icons-png.flaticon.com/512/1021/1021566.png',
+    location: 'New York, USA',
+    expertise: ['Psychology', 'Stress Management'],
+  };
+
   // Sample patient data
   const patients = [
     {
@@ -14,49 +25,39 @@ const DoctorDashboard = () => {
         contact: '123-456-7890',
         symptoms: 'Stress, fatigue, and low energy',
         notes: 'Reports trouble sleeping and mild anxiety.',
+        history: [
+          { date: '2024-10-20', type: 'Depression', result: 'Moderate' },
+          { date: '2024-10-15', type: 'Anxiety', result: 'Low' },
+        ],
       },
     },
-    {
-      id: 2,
-      name: 'Jane Smith',
-      date: '2024-11-21',
-      time: '2:00 PM',
-      details: {
-        age: 25,
-        gender: 'Female',
-        contact: '987-654-3210',
-        symptoms: 'Overwhelmed, frequent crying, and sadness',
-        notes: 'Exhibits signs of depression, reports loss of interest.',
-      },
-    },
-    {
-      id: 3,
-      name: 'Emily White',
-      date: '2024-11-22',
-      time: '4:00 PM',
-      details: {
-        age: 40,
-        gender: 'Female',
-        contact: '555-123-4567',
-        symptoms: 'Irritability, nervousness, and tension',
-        notes: 'Experiencing workplace stress and personal conflict.',
-      },
-    },
+    // Add more patient data here
   ];
-
-  const [selectedPatient, setSelectedPatient] = useState(null);
-
-  const handleShowDetails = (patient) => {
-    setSelectedPatient(patient);
-  };
-
-  const handleCloseDetails = () => {
-    setSelectedPatient(null);
-  };
 
   return (
     <div className="max-w-6xl mx-auto p-6">
       <h1 className="text-3xl font-bold text-center mb-8">Doctor Dashboard</h1>
+
+      {/* Doctor Profile */}
+      <div className="bg-white shadow-md rounded-lg p-6 mb-8">
+        <div className="flex items-center">
+          <img
+            src={doctor.photo}
+            alt={doctor.name}
+            className="w-20 h-20 rounded-full object-cover mr-6"
+          />
+          <div>
+            <h2 className="text-2xl font-bold">{doctor.name}</h2>
+            <p className="text-gray-500">{doctor.location}</p>
+            <h3 className="text-lg font-semibold mt-4">Specialist In:</h3>
+            <ul className="list-disc list-inside text-gray-700">
+              {doctor.expertise.map((field, index) => (
+                <li key={index}>{field}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
 
       {/* Patient List */}
       <div className="bg-white shadow-md rounded-lg p-4">
@@ -78,7 +79,7 @@ const DoctorDashboard = () => {
                 <td className="border border-gray-300 px-4 py-2">{patient.time}</td>
                 <td className="border border-gray-300 px-4 py-2 text-center">
                   <button
-                    onClick={() => handleShowDetails(patient)}
+                    onClick={() => navigate(`/user-details/${patient.id}`)}
                     className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
                   >
                     Show Details
@@ -89,41 +90,6 @@ const DoctorDashboard = () => {
           </tbody>
         </table>
       </div>
-
-      {/* Patient Details Modal */}
-      {selectedPatient && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white w-full max-w-md rounded-lg shadow-lg p-6">
-            <h2 className="text-2xl font-bold mb-4">Patient Details</h2>
-            <p>
-              <strong>Name:</strong> {selectedPatient.name}
-            </p>
-            <p>
-              <strong>Age:</strong> {selectedPatient.details.age}
-            </p>
-            <p>
-              <strong>Gender:</strong> {selectedPatient.details.gender}
-            </p>
-            <p>
-              <strong>Contact:</strong> {selectedPatient.details.contact}
-            </p>
-            <p>
-              <strong>Symptoms:</strong> {selectedPatient.details.symptoms}
-            </p>
-            <p>
-              <strong>Notes:</strong> {selectedPatient.details.notes}
-            </p>
-            <div className="mt-4 text-center">
-              <button
-                onClick={handleCloseDetails}
-                className="bg-red-500 text-white px-6 py-2 rounded-md hover:bg-red-700 transition"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

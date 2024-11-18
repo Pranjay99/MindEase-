@@ -10,6 +10,10 @@ const PredictionSchema = new mongoose.Schema({
   result: { 
     type: String, 
     required: true 
+  },
+  result_type: { 
+    type: String, 
+    required: true 
   }, // Result level, e.g., "None", "Mild", "Moderate", "Severe"
   created_at: { type: Date, default: Date.now }, // Timestamp for when the prediction was made
 });

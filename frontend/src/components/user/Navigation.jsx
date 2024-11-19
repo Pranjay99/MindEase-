@@ -34,15 +34,18 @@ const NavigationBar = () => {
 
           {/* Right Side - Profile and Login */}
           <div className="flex items-center space-x-4">
-            <Link
-              to="/profile"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-            >
-              Profile
+            <Link to="/profile"
+              className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" >
+                profile
             </Link>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white px-3 py-2 rounded-md text-sm font-medium">
-              Login
-            </button>
+            <Link to="/login"
+              className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" >
+                Login
+            </Link>
+              
+          
+           
+             
           </div>
         </div>
       </div>

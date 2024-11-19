@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const DoctorDetails = () => {
-  //const  id  = 1; // Fetch the doctor ID from the route
   const navigate = useNavigate();
   const [consultationType, setConsultationType] = useState('online');
   const [selectedTime, setSelectedTime] = useState('');
+  const [userNote, setUserNote] = useState('');
+  const [isBooked, setIsBooked] = useState(false);
 
   const doctor = {
     name: 'Dr. Jane Smith',
@@ -13,6 +14,10 @@ const DoctorDetails = () => {
     location: 'New York, USA',
     expertise: ['Psychology', 'Stress Management'],
     timings: ['10:00 AM', '11:30 AM', '2:00 PM', '4:00 PM'],
+    feedback: [
+      { name: 'John Doe', comment: 'Great experience, very professional!', rating: 5 },
+      { name: 'Emily White', comment: 'Helped me a lot with stress management.', rating: 4 },
+    ],
   };
 
   const handleBooking = () => {
@@ -20,20 +25,23 @@ const DoctorDetails = () => {
       alert('Please select a time slot!');
       return;
     }
+    setIsBooked(true); // Update booking status
     alert(
       `Booking confirmed for ${consultationType} consultation with ${doctor.name} at ${selectedTime}`
     );
-    navigate('/'); // Redirect to the home or confirmation page
   };
 
   return (
     <div className="max-w-4xl mx-auto p-6">
+      {/* Back Button */}
       <button
         onClick={() => navigate(-1)}
         className="text-blue-500 underline mb-4"
       >
         Back to List
       </button>
+
+      {/* Doctor Details */}
       <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-lg p-6">
         <div className="flex-shrink-0 mb-6 md:mb-0 md:mr-6">
           <img
@@ -54,6 +62,7 @@ const DoctorDetails = () => {
         </div>
       </div>
 
+      {/* Consultation Type */}
       <div className="mt-6">
         <h3 className="text-xl font-semibold mb-2">Consultation Type:</h3>
         <div className="flex space-x-4">
@@ -80,6 +89,7 @@ const DoctorDetails = () => {
         </div>
       </div>
 
+      {/* Available Timings */}
       <div className="mt-6">
         <h3 className="text-xl font-semibold mb-2">Available Timings:</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -99,13 +109,47 @@ const DoctorDetails = () => {
         </div>
       </div>
 
+      {/* User Note */}
+      <div className="mt-6">
+        <h3 className="text-xl font-semibold mb-2">Add a Note:</h3>
+        <textarea
+          value={userNote}
+          onChange={(e) => setUserNote(e.target.value)}
+          className="w-full p-3 border border-gray-300 rounded-md"
+          placeholder="Add any specific details or requirements for the doctor..."
+        />
+      </div>
+
+      {/* Booking Button */}
       <div className="mt-8 text-center">
         <button
           onClick={handleBooking}
-          className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition"
+          className={`px-6 py-3 rounded-lg shadow-lg transition ${
+            isBooked
+              ? 'bg-green-500 text-white cursor-default'
+              : 'bg-blue-600 text-white hover:bg-blue-700'
+          }`}
+          disabled={isBooked}
         >
-          Book Appointment
+          {isBooked ? 'Booking Done' : 'Book Appointment'}
         </button>
+      </div>
+
+      {/* Feedback Section */}
+      <div className="mt-10">
+        <h3 className="text-xl font-semibold mb-4">Doctor Feedback:</h3>
+        <div className="space-y-4">
+          {doctor.feedback.map((fb, index) => (
+            <div
+              key={index}
+              className="p-4 bg-gray-100 rounded-lg shadow-sm border border-gray-200"
+            >
+              <p className="font-bold">{fb.name}</p>
+              <p className="text-gray-600">{fb.comment}</p>
+              <p className="text-yellow-500">Rating: {'⭐'.repeat(fb.rating)}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

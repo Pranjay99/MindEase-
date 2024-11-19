@@ -9,6 +9,8 @@ import Prediction from "./components/user/Depresult";
 import Depression from "./components/user/Depression";
 import { useState } from "react";
 import DoctorDashboard from "./components/Doctor/Dashboard";
+import TrackingPage from "./components/user/Explore";
+import UserDetails from "./components/Doctor/userdetails";
 
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
       <Route path="/doctor" element={<DoctorDashboard />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Signup />} />
+      <Route path="/explore" element={<TrackingPage />} />
+      <Route path="/user-details/:id" element={<UserDetails />} />
       <Route path="/depression" element={<Depression onPrediction={handlePredictionResult}/>} />
       <Route
           path="/prediction" element={

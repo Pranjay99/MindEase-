@@ -34,7 +34,7 @@ const Prediction = ({ depressionType, depressionScore }) => {
           onClick={() => RePredictio()} // Reset and start again
           className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition"
         >
-          Take Another Assessment
+          Take Another Assessment 
         </button>
       </div>
     </div>

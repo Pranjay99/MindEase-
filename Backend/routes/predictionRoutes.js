@@ -4,10 +4,10 @@ const router = express.Router();
 
 // Save Prediction
 router.post('/', async (req, res) => {
-  const { userId, test_type, result } = req.body;
+  const { userId, test_type, result, result_type } = req.body;
   try {
     // Create a new prediction
-    const prediction = new Prediction({ user: userId, test_type, result });
+    const prediction = new Prediction({ user: userId, test_type, result , result_type});
     await prediction.save();
     res.status(201).json({ message: 'Prediction saved successfully', prediction });
   } catch (error) {

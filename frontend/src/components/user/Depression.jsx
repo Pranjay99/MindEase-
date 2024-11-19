@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-const Depression = ({ onPrediction }) => {
+const Depression = ({ onPrediction, userId }) => {
   const navigate = useNavigate();
   const questions = [
     "How often have you felt down, depressed, or hopeless?",
@@ -24,7 +25,7 @@ const Depression = ({ onPrediction }) => {
     setRatings(updatedRatings);
   };
 
-  const handlePrediction = () => {
+  const handlePrediction = async () => {
     const totalScore = ratings.reduce((sum, rating) => sum + rating, 0);
     const averageScore = totalScore / questions.length;
 
@@ -35,6 +36,22 @@ const Depression = ({ onPrediction }) => {
       depressionType = "Moderate Risk of Depression";
     } else {
       depressionType = "High Risk of Depression";
+    }
+
+    const data = {
+      userId : '673867fbe15636c181009fe9', // Replace with the actual user ID
+      test_type: "Depression",
+      result: totalScore ,
+      result_type : depressionType ,
+    };
+
+    try {
+      // Make the POST request to save the prediction
+      await axios.post('http://localhost:3000/api/predictions', data);
+      alert('Prediction saved successfully!');
+    } catch (error) {
+      console.error('Error saving prediction:', error);
+      alert('Failed to save prediction. Please try again.');
     }
 
     onPrediction(depressionType, totalScore);

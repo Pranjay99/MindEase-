@@ -38,14 +38,11 @@ const NavigationBar = () => {
               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" >
                 profile
             </Link>
-            <Link to="/login"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" >
-                Login
+            <Link
+              to="/login"
+              className="bg-blue-500 hover:bg-blue-700 text-white px-3 py-2 rounded-md text-sm font-medium">
+              Login
             </Link>
-              
-          
-           
-             
           </div>
         </div>
       </div>

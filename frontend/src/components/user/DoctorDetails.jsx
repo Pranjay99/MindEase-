@@ -9,9 +9,9 @@ const DoctorDetails = () => {
   const [isBooked, setIsBooked] = useState(false);
 
   const doctor = {
-    name: 'Dr. Jane Smith',
+    name: 'Dr. C V Ramesh',
     photo: 'https://cdn-icons-png.flaticon.com/512/1021/1021566.png',
-    location: 'New York, USA',
+    location: 'Vellore, India',
     expertise: ['Psychology', 'Stress Management'],
     timings: ['10:00 AM', '11:30 AM', '2:00 PM', '4:00 PM'],
     feedback: [
